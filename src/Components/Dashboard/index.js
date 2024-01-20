@@ -3,6 +3,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 
 function Dashboard() {
   const [manualId, setManualId] = useState('');
+  const [scannedCode, setScannedCode] = useState(''); 
   const [inputMode, setInputMode] = useState('scanner'); // 'scanner' or 'manual'
   const qrScannerRef = useRef(null);
 
@@ -14,6 +15,7 @@ function Dashboard() {
       
       qrScannerRef.current.render(
         decodedText => {
+          setScannedCode(decodedText);
           // Handle the scanned QR code by navigating to the link
           
           if (isValidHttpUrl(decodedText)) {
@@ -101,7 +103,7 @@ function Dashboard() {
         </div>
       )}
 
-      <p>{decodedText}</p>
+      <p>{scannedCod}</p>
     </div>
   );
 }
