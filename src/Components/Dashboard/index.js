@@ -103,7 +103,7 @@ function Dashboard() {
         </div>
       )}
 
-      <p>{scannedCod}</p>
+      <p>{scannedCode}</p>
     </div>
   );
 }
