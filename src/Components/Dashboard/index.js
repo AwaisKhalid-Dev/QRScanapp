@@ -15,6 +15,7 @@ function Dashboard() {
       qrScannerRef.current.render(
         decodedText => {
           // Handle the scanned QR code by navigating to the link
+          console.log(decodedText);
           if (isValidHttpUrl(decodedText)) {
             window.location.href = decodedText;
           }
