@@ -8,6 +8,7 @@ import profile5 from "../../images/profile5.jpeg";
 import profile6 from "../../images/profile6.jpeg";
 function Dashboard() {
   const [manualId, setManualId] = useState("");
+  const [customerID, setCustomerID] = useState(null);
   const [scannedCode, setScannedCode] = useState("");
   const [inputMode, setInputMode] = useState("scanner"); // 'scanner' or 'manual'
   const qrScannerRef = useRef(null);
@@ -28,6 +29,9 @@ function Dashboard() {
 
           if (isValidHttpUrl(decodedText)) {
             window.location.href = decodedText;
+          }
+          else {
+            setCustomerID(decodedText);
           }
         },
         (error) => {
@@ -60,99 +64,649 @@ function Dashboard() {
   };
 
   const handleGoClick = () => {
-    if (isValidHttpUrl(manualId)) {
-      window.open(manualId, "_blank");
-    } else {
-      alert("Please enter a valid URL.");
-    }
+    setCustomerID(manualId);
+    // if (isValidHttpUrl(manualId)) {
+    //   window.open(manualId, "_blank");
+    // } else {
+    //   alert("Please enter a valid URL.");
+    // }
   };
+ const StaticData = [
+    {
+      id:10267,
+      name: "Harry",
+      meter: "5667",
+      origin: "Gombak",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile1,
+    },
+   
+    {
+      id:20550,
+      name: "John",
+      meter: "6745",
+      origin: "DownTown",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile2,
+    },
+   
+    {
+      id:15689,
+      name: "Vue",
+      meter: "3245",
+      origin: "CityCenter",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile3,
+    },
+   
+    {
+      id:40012,
+      name: "Harry",
+      meter: "9006",
+      origin: "Capital",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile4,
+    },
+   
+    {
+      id:14452,
+      name: "Poul",
+      meter: "2366",
+      origin: "MainCity",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile5,
+    },
+   
+    {
+      id:99826,
+      name: "Vicky",
+      meter: "2543",
+      origin: "Kuala Lumpur",
+      adress:"51200 KUALA LAMPUR",
+      profile:profile6,
+    },
+   
+  ]
 
-  const tableData = [
-    {
-      id: 1,
-      date: "10/1/24",
-      type: "Journal Adjustment",
-      debit: 150,
-      credit: 0,
-      balance: 150,
-    },
-    {
-      id: 2,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-    {
-      id: 3,
-      date: "10/3/24",
-      type: "Journal Adjustment",
-      debit: 150,
-      credit: 0,
-      balance: 300,
-    },
-    {
-      id: 4,
-      date: "15/2/24",
-      type: "Journal Adjustment",
-      debit: 230,
-      credit: 150,
-      balance: 380,
-    },
-    {
-      id: 5,
-      date: "10/2/24",
-      type: "Journal Adjustment",
-      debit: 50,
-      credit: 130,
-      balance: 300,
-    },
-    {
-      id: 6,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-    {
-      id: 7,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-    {
-      id: 8,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-    {
-      id: 9,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-    {
-      id: 10,
-      date: "12/2/24",
-      type: "Journal Adjustment",
-      debit: 180,
-      credit: 180,
-      balance: 150,
-    },
-  ];
+
+const dummyList =[
+  //customer 10267
+  {
+    id: 1,
+    customerID:10267,
+    date: "10/1/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 0,
+    balance: 180,
+  },
+
+  {
+    id: 2,
+    customerID:10267,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 180,
+    balance: 50,
+  },
+  {
+    id: 3,
+    customerID:10267,
+    date: "8/3/24",
+    type: "Journal Adjustment",
+    debit: 70,
+    credit: 0,
+    balance: 120,
+  },
+  {
+    id: 4,
+    customerID:10267,
+    date: "10/4/24",
+    type: "Journal Adjustment",
+    debit: 30,
+    credit: 0,
+    balance: 150,
+  },
+  {
+    id: 5,
+    customerID:10267,
+    date: "15/5/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 50,
+    balance: 150,
+  },
+  {
+    id: 6,
+    customerID:10267,
+    date: "10/6/24",
+    type: "Journal Adjustment",
+    debit: 20,
+    credit: 170,
+    balance:0,
+  },
+  {
+    id: 7,
+    customerID:10267,
+    date: "12/7/24",
+    type: "Journal Adjustment",
+    debit: 70,
+    credit: 0,
+    balance: 70,
+  },
+  {
+    id: 8,
+    customerID:10267,
+    date: "08/8/24",
+    type: "Journal Adjustment",
+    debit: 90,
+    credit: 0,
+    balance: 160,
+  },
+  {
+    id: 9,
+    customerID:10267,
+    date: "11/9/24",
+    type: "Journal Adjustment",
+    debit: 110,
+    credit: 100,
+    balance: 170,
+  },
+  {
+    id: 10,
+    customerID:10267,
+    date: "15/10/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 200,
+    balance: 20,
+  },
+
+  //customer 20550
+
+
+  {
+    id: 1,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  {
+    id: 2,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 3,
+    customerID:20550,
+    date: "10/3/24",
+    type: "Journal Adjustment",
+    debit: 150,
+    credit: 0,
+    balance: 300,
+  },
+  {
+    id: 4,
+    customerID:20550,
+    date: "15/2/24",
+    type: "Journal Adjustment",
+    debit: 230,
+    credit: 150,
+    balance: 380,
+  },
+  {
+    id: 5,
+    customerID:20550,
+    date: "10/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 130,
+    balance: 300,
+  },
+  {
+    id: 6,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 7,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 8,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 9,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 10,
+    customerID:20550,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  //customer 15689
+  
+  {
+    id: 1,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  {
+    id: 2,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 3,
+    customerID:15689,
+    date: "10/3/24",
+    type: "Journal Adjustment",
+    debit: 150,
+    credit: 0,
+    balance: 300,
+  },
+  {
+    id: 4,
+    customerID:15689,
+    date: "15/2/24",
+    type: "Journal Adjustment",
+    debit: 230,
+    credit: 150,
+    balance: 380,
+  },
+  {
+    id: 5,
+    customerID:15689,
+    date: "10/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 130,
+    balance: 300,
+  },
+  {
+    id: 6,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 7,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 8,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 9,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 10,
+    customerID:15689,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+
+  //customer 40012
+  
+  {
+    id: 1,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  {
+    id: 2,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 3,
+    customerID:40012,
+    date: "10/3/24",
+    type: "Journal Adjustment",
+    debit: 150,
+    credit: 0,
+    balance: 300,
+  },
+  {
+    id: 4,
+    customerID:40012,
+    date: "15/2/24",
+    type: "Journal Adjustment",
+    debit: 230,
+    credit: 150,
+    balance: 380,
+  },
+  {
+    id: 5,
+    customerID:40012,
+    date: "10/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 130,
+    balance: 300,
+  },
+  {
+    id: 6,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 7,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 8,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 9,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 10,
+    customerID:40012,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+
+  //customer 14452
+  
+  {
+    id: 1,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  {
+    id: 2,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 3,
+    customerID:14452,
+    date: "10/3/24",
+    type: "Journal Adjustment",
+    debit: 150,
+    credit: 0,
+    balance: 300,
+  },
+  {
+    id: 4,
+    customerID:14452,
+    date: "15/2/24",
+    type: "Journal Adjustment",
+    debit: 230,
+    credit: 150,
+    balance: 380,
+  },
+  {
+    id: 5,
+    customerID:14452,
+    date: "10/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 130,
+    balance: 300,
+  },
+  {
+    id: 6,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 7,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 8,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 9,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 10,
+    customerID:14452,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+   //customer 99826
+  
+   {
+    id: 1,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  {
+    id: 2,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 3,
+    customerID:99826,
+    date: "10/3/24",
+    type: "Journal Adjustment",
+    debit: 150,
+    credit: 0,
+    balance: 300,
+  },
+  {
+    id: 4,
+    customerID:99826,
+    date: "15/2/24",
+    type: "Journal Adjustment",
+    debit: 230,
+    credit: 150,
+    balance: 380,
+  },
+  {
+    id: 5,
+    customerID:99826,
+    date: "10/2/24",
+    type: "Journal Adjustment",
+    debit: 50,
+    credit: 130,
+    balance: 300,
+  },
+  {
+    id: 6,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 7,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 8,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 9,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+  {
+    id: 10,
+    customerID:99826,
+    date: "12/2/24",
+    type: "Journal Adjustment",
+    debit: 180,
+    credit: 180,
+    balance: 150,
+  },
+
+  
+
+]
+
+
+const filteredCustomerIndex = StaticData.findIndex(item => parseInt(item.id) === parseInt(customerID));
+const filteredList = dummyList.filter(item => parseInt(item.customerID) === parseInt(customerID));
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="screen-h flex items-center justify-center">
+    <div className="container mx-auto p-4 ">
+      <div className="screen-h flex items-center justify-center my-5">
         <div>
           <h2 className="text-xl font-semibold my-5 text-wrap text-slate-500">
             Scan QR Or Enter Customer Id Manualy
@@ -211,25 +765,25 @@ function Dashboard() {
       <div className="flex w-100 justify-between mt-3 px-4">
         <div className="flex">
           <div className="leading-8 text-lg">
-            <p>Customer Name:</p>
+            <p>Customer:</p>
             <p>Meter No:</p>
             <p>Origin:</p>
             <p>Customer Address:&nbsp;&nbsp;</p>
           </div>
 
           <div className="leading-8 font-semibold ml-3">
-            <p>Harry</p>
-            <p>10956</p>
-            <p>RUMA PANGSA</p>
-            <p>51200 KUALA LAMPUR </p>
+            <p>{StaticData[filteredCustomerIndex]?.name   || "N/A"}</p>
+            <p>{StaticData[filteredCustomerIndex]?.meter  || "N/A"}</p>
+            <p>{StaticData[filteredCustomerIndex]?.origin || "N/A"}</p>
+            <p>{StaticData[filteredCustomerIndex]?.adress || "N/A"}</p>
           </div>
         </div>
 
         <div>
           <p>
-            Customer ID: <b>10267</b>
+            Customer ID: <b>{StaticData[filteredCustomerIndex]?.id || "N/A" }</b>
           </p>
-          <img className="mt-1 w-[130px]" src={profile1} alt="" />
+          <img className="mt-1 w-[130px]" src={StaticData[filteredCustomerIndex]?.profile || "N/A"} alt="" />
         </div>
       </div>
 
@@ -258,7 +812,7 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody className="text-gray-700">
-            {tableData.map((row, index) => (
+            {filteredList.map((row, index) => (
               <tr key={index}>
                 <td className="text-left py-3 px-4">{row.id}</td>
                 <td className="text-left py-3 px-4">{row.date}</td>
