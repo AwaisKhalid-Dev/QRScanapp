@@ -706,7 +706,7 @@ const filteredList = dummyList.filter(item => parseInt(item.customerID) === pars
 
   return (
     <div className="container mx-auto p-4 ">
-      <div className="screen-h flex items-center justify-center my-5">
+      <div className="screen-h flex items-center justify-center mt-[80px]">
         <div>
           <h2 className="text-xl font-semibold my-5 text-wrap text-slate-500">
             Scan QR Or Enter Customer Id Manualy
