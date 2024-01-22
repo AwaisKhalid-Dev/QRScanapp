@@ -16,32 +16,17 @@ function Dashboard() {
   const [errorMessage, setErrorMessage] = useState("");
   const qrScannerRef = useRef(null);
 
+  
   useEffect(() => {
-    if (inputMode === "scanner") {
-      // Initialize the QR Scanner
+    if (inputMode === "scanner" && showScanner) { // Make sure the scanner should be shown
       qrScannerRef.current = new Html5QrcodeScanner(
         "qr-reader",
         { fps: 10, qrbox: 250 },
         false
       );
-
-      qrScannerRef.current.render(
-        (decodedText) => {
-          setScannedCode(decodedText);
-          // Handle the scanned QR code by navigating to the link
-
-          if (isValidHttpUrl(decodedText)) {
-            window.location.href = decodedText;
-          } else {
-            setCustomerID(decodedText);
-          }
-        },
-        (error) => {
-          console.error("Error scanning QR:", error);
-        }
-      );
+      qrScannerRef.current.render(onScanSuccess, onScanError);
     }
-
+  
     // Cleanup function
     return () => {
       if (qrScannerRef.current) {
@@ -49,7 +34,7 @@ function Dashboard() {
         qrScannerRef.current = null;
       }
     };
-  }, [inputMode]);
+  }, [inputMode, showScanner]); 
 
   const isValidHttpUrl = (string) => {
     let url;
@@ -90,12 +75,37 @@ function Dashboard() {
 
   const searchAnotherCustomer = () => {
     setCustomerID(null);
-    setShowScanner(true);
-    setShowTable(false); // Show scanner/input again
+    setShowScanner(true); // Show the scanner again
+    setShowTable(false); // Hide the table
+    setInputMode('scanner'); // Reset the input mode to 'scanner'
     setManualId(""); // Reset manual ID input
-    // You might also want to clear scannedCode or handle it as needed
-    setScannedCode("");
+    setScannedCode(""); // Reset scanned code
+  
+    // Restart the QR scanner
+    if (qrScannerRef.current) {
+      qrScannerRef.current.clear();
+      qrScannerRef.current.render(onScanSuccess, onScanError);
+    }
   };
+
+  const onScanSuccess = (decodedText) => {
+    setScannedCode(decodedText);
+    if (isValidHttpUrl(decodedText)) {
+      window.location.href = decodedText;
+    } else {
+      setCustomerID(decodedText);
+      setShowScanner(false); // Hide the scanner once the code is scanned
+      setShowTable(true); // Show the table once the customer ID is set
+    }
+  };
+  const onScanError = (error) => {
+    console.error("Error scanning QR:", error);
+    setErrorMessage("Scanning failed, please try again.");
+  };  
+
+
+
+  
 
   const StaticData = [
     {
