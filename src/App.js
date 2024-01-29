@@ -1,12 +1,10 @@
-import Login from './Components/Login'
 import './App.css';
-import Dashboard from './Components/Dashboard';
+import Routes from "./Routes";
 
 function App() {
   return (
     <>
-    {/* <Login/> */}
-    <Dashboard/>
+    <Routes/>
     </>
   );
 }
