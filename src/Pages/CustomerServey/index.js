@@ -25,33 +25,34 @@ export default function CustomerServey() {
 
   return (
     <>
-      <div className="py-[40px] flex justify-center px-2 ">
-        <img src={emoji2} alt="" />
-      </div>
-      <div ClassName="space-y-5  justify-center flex-col flex">
-        {buttons.map((item, index) => (
-          <div
-            onClick={() => navigate("/LoginWith")}
-            ClassName="flex justify-center items-center space-x-2 my-[10px]"
-          >
-            <button ClassName=" transition duration-300 ease-in-out hover:bg-gray-500 hover:shadow-md        w-[220px] h-[70px] shadow-md bg-gray-300 rounded text-2xl font-bold">
-              {item.heading}
-            </button>
-            <div ClassName="relative group">
-              <div ClassName="w-6 h-6 rounded-full transition duration-300 ease-in-out hover:bg-gray-500 bg-gray-300 flex items-center justify-center cursor-pointer text-sm font-bold">
-                ?
-              </div>
-              <div ClassName="absolute hidden z-20 ml-[-60px] group-hover:block w-32 bg-black text-white text-sm p-2 rounded-md shadow-lg">
-                {item.tooltip}
-              </div>
+    <div className="py-[40px] flex justify-center px-2 ">
+      <img src={emoji2} alt="" />
+    </div>
+    <div className="space-y-5 justify-center flex-col flex">
+      {buttons.map((item, index) => (
+        <div
+          onClick={() => navigate("/LoginWith")}
+          className="flex justify-center items-center space-x-2 my-[10px]"
+          key={index} // Added a key prop here for best practice
+        >
+          <button className="transition duration-300 ease-in-out hover:bg-gray-500 hover:shadow-md w-[220px] h-[70px] shadow-md bg-gray-300 rounded text-2xl font-bold">
+            {item.heading}
+          </button>
+          <div className="relative group">
+            <div className="w-6 h-6 rounded-full transition duration-300 ease-in-out hover:bg-gray-500 bg-gray-300 flex items-center justify-center cursor-pointer text-sm font-bold">
+              ?
+            </div>
+            <div className="absolute hidden z-20 ml-[-60px] group-hover:block w-32 bg-black text-white text-sm p-2 rounded-md shadow-lg">
+              {item.tooltip}
             </div>
           </div>
-        ))}
+        </div>
+      ))}
 
-        <h1 className="text-[#f8d490] text-xl font-bold text-center">
-          Tolong klik salah satu pilihan{" "}
-        </h1>
-      </div>
-    </>
+      <h1 className="text-[#f8d490] text-xl font-bold text-center">
+        Tolong klik salah satu pilihan{" "}
+      </h1>
+    </div>
+  </>
   );
 }
